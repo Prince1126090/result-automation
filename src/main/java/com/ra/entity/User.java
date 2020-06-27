@@ -1,8 +1,6 @@
 package com.ra.entity;
 
-import lombok.Builder;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
+import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.Column;
@@ -13,7 +11,6 @@ import java.util.Date;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
-@Builder
 @Entity
 @Table(name = "ra_user")
 public class User extends BaseEntity {
