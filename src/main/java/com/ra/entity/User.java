@@ -15,7 +15,7 @@ import java.util.Date;
 @Data
 @Builder
 @Entity
-@Table(name = "user")
+@Table(name = "ra_user")
 public class User extends BaseEntity {
 
     @NotNull
