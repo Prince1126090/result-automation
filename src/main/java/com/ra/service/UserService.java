@@ -18,16 +18,15 @@ public class UserService {
         return repository.save(user);
     }
 
-//    public User update(Long userId, User userDetails) throws ResourceNotFoundException {
-//        User user = findById(userId);
-//        user.builder().
-//        user.setContactNumber(userDetails.getContactNumber());
-//        user.setDateOfBirth(userDetails.getDateOfBirth());
-//        user.setEmail(userDetails.getEmail());
-//        user.setGender(userDetails.getGender());
-//        User updatedUser = repository.save(user);
-//        return updatedUser;
-//    }
+    public User update(Long userId, User userDetails) throws ResourceNotFoundException {
+        User user = findById(userId);
+        user.setContactNumber(userDetails.getContactNumber());
+        user.setDateOfBirth(userDetails.getDateOfBirth());
+        user.setEmail(userDetails.getEmail());
+        user.setGender(userDetails.getGender());
+        User updatedUser = repository.save(user);
+        return updatedUser;
+    }
 
     public void delete(Long userId) throws ResourceNotFoundException {
         User user = findById(userId);
