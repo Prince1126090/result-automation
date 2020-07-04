@@ -17,18 +17,13 @@ public class User extends BaseEntity {
 
     @NotBlank
     @Column(unique = true)
-    private String username;
-    @NotBlank
-    private String password;
-
-    @NotBlank
-    @Column(unique = true)
     @Pattern(regexp = "^\\+?(88)?0?1[3456789][0-9]{8}\\b")
     private String contactNumber;
-    @NotBlank
-    @Column(unique = true)
     @Email
     private String email;
+
+    @NotBlank
+    private String password;
 
     @NotNull
     private String instituteName;
