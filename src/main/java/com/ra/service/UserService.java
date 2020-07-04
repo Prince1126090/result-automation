@@ -1,5 +1,6 @@
 package com.ra.service;
 
+import com.ra.dto.UserCredentials;
 import com.ra.entity.User;
 import com.ra.exception.ResourceNotFoundException;
 import com.ra.repository.UserRepository;
@@ -16,8 +17,10 @@ public class UserService {
 
     private final UserRepository repository;
 
-    public User login(User user) {
-        return repository.save(user); }
+    public User login(UserCredentials credentials) throws ResourceNotFoundException {
+        return repository.findOneByContactNumberAndPassword(credentials.getContactNumber(), credentials.getPassword())
+                .orElseThrow(() -> new ResourceNotFoundException("User not Found"));
+    }
 
     public User create(User user) { return repository.save(user); }
 

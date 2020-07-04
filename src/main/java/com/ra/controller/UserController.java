@@ -1,5 +1,6 @@
 package com.ra.controller;
 
+import com.ra.dto.UserCredentials;
 import com.ra.entity.User;
 import com.ra.exception.ResourceNotFoundException;
 import com.ra.service.UserService;
@@ -37,8 +38,8 @@ public class UserController {
 	}
 
 	@PostMapping("/login")
-	public User login(@Valid @RequestBody User user) {
-		return userService.login(user);
+	public User login(@Valid @RequestBody UserCredentials credentials) {
+		return userService.login(credentials);
 	}
 
 	@PutMapping("/users/{id}")
