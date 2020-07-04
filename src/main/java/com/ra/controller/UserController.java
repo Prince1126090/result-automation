@@ -1,6 +1,5 @@
 package com.ra.controller;
 
-import com.ra.entity.Employee;
 import com.ra.entity.User;
 import com.ra.exception.ResourceNotFoundException;
 import com.ra.service.UserService;
@@ -35,6 +34,11 @@ public class UserController {
 	@PostMapping("/users")
 	public User createUser(@Valid @RequestBody User user) {
 		return userService.create(user);
+	}
+
+	@PostMapping("/login")
+	public User login(@Valid @RequestBody User user) {
+		return userService.login(user);
 	}
 
 	@PutMapping("/users/{id}")

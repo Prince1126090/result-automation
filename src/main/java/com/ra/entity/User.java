@@ -25,7 +25,7 @@ public class User extends BaseEntity {
     @NotBlank
     private String password;
 
-    @NotNull
+    @NotBlank
     private String instituteName;
     private String description;
     private String address;

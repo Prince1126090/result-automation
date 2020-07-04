@@ -16,6 +16,8 @@ public class UserService {
 
     private final UserRepository repository;
 
+    public User login(User user) {
+        return repository.save(user); }
 
     public User create(User user) { return repository.save(user); }
 
