@@ -17,10 +17,7 @@ public class UserService {
     private final UserRepository repository;
 
 
-    public User create(User user) {
-        user.setUsername(user.getContactNumber());
-        return repository.save(user);
-    }
+    public User create(User user) { return repository.save(user); }
 
 
     public User update(Long userId, User userDetails) throws ResourceNotFoundException {
@@ -51,7 +48,7 @@ public class UserService {
 
     public List<User> getList() {
         List<User> userList = repository.findAll();
-        log.info("Found {} users in DB", userList.size());
+        log.info("Found {} user(s) in DB", userList.size());
         return userList;
     }
 
