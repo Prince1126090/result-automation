@@ -15,9 +15,10 @@ import java.util.Date;
 @Table(name = "ra_user")
 public class User extends BaseEntity {
 
-    @NotNull
+    @NotBlank
+    @Column(unique = true)
     private String username;
-    @NotNull
+    @NotBlank
     private String password;
 
     @NotBlank
@@ -30,14 +31,8 @@ public class User extends BaseEntity {
     private String email;
 
     @NotNull
-    private Gender gender;
-    @DateTimeFormat(pattern = "dd/mm/yyyy")
-    @Past
-    private Date dateOfBirth;
-    private String presentAddress;
-
-    public enum Gender {
-        MALE, FEMALE, OTHER
-    }
+    private String instituteName;
+    private String description;
+    private String address;
 
 }
