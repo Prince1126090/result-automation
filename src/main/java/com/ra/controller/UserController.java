@@ -38,7 +38,7 @@ public class UserController {
 	}
 
 	@PostMapping("/login")
-	public User login(@Valid @RequestBody UserCredentials credentials) {
+	public User login(@Valid @RequestBody UserCredentials credentials) throws ResourceNotFoundException  {
 		return userService.login(credentials);
 	}
 
