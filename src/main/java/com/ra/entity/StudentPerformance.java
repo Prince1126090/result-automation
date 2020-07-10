@@ -38,7 +38,7 @@ public class StudentPerformance extends BaseEntity {
 
     @Type(type = "jsonb")
     @Column(columnDefinition = "jsonb")
-    private String marks;
+    private Object marks;
 
     @Type(type = "jsonb")
     @Column(columnDefinition = "jsonb")
