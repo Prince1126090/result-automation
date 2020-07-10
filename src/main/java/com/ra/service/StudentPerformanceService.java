@@ -27,7 +27,7 @@ public class StudentPerformanceService {
         );
     }
 
-    public StudentPerformance findStudentPerformance(SearchPerformance searchParams) throws ResourceNotFoundException {
+    public StudentPerformance findIndividualPerformance(SearchPerformance searchParams) throws ResourceNotFoundException {
         return repository.findByYearAndStudentClassAndSectionAndExamAndRoll(
                 searchParams.getYear(),
                 searchParams.getStudentClass(),

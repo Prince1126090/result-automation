@@ -1,19 +1,14 @@
 package com.ra.controller;
 
 import com.ra.dto.SearchPerformance;
-import com.ra.dto.UserCredentials;
 import com.ra.entity.StudentPerformance;
-import com.ra.entity.User;
 import com.ra.exception.ResourceNotFoundException;
 import com.ra.service.StudentPerformanceService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 @RestController
 @RequiredArgsConstructor
@@ -33,8 +28,13 @@ public class StudentPerformanceController {
     }
 
     @PostMapping("/exam-performance")
-    public List<StudentPerformance> findPerformance(@Valid @RequestBody SearchPerformance searchPerformance) throws ResourceNotFoundException  {
+    public List<StudentPerformance> findPerformance(@Valid @RequestBody SearchPerformance searchPerformance) {
         return service.findExamPerformance(searchPerformance);
+    }
+
+    @PostMapping("/individual-performance")
+    public StudentPerformance findIndividualPerformance(@Valid @RequestBody SearchPerformance searchPerformance) throws ResourceNotFoundException {
+        return service.findIndividualPerformance(searchPerformance);
     }
 
 //    @PutMapping("/users/{id}")
