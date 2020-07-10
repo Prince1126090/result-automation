@@ -1,5 +1,6 @@
 package com.ra.controller;
 
+import com.ra.dto.SearchPerformance;
 import com.ra.dto.UserCredentials;
 import com.ra.entity.StudentPerformance;
 import com.ra.entity.User;
@@ -26,16 +27,14 @@ public class StudentPerformanceController {
         return service.getList();
     }
 
-//    @GetMapping("/users/{id}")
-//    public ResponseEntity<User> getUserById(@PathVariable(value = "id") Long userId)
-//            throws ResourceNotFoundException {
-//        User user = service.findById(userId);
-//        return ResponseEntity.ok().body(user);
-//    }
-
     @PostMapping("/performance")
     public StudentPerformance createPerformance(@Valid @RequestBody StudentPerformance performance) {
         return service.create(performance);
+    }
+
+    @PostMapping("/exam-performance")
+    public List<StudentPerformance> findPerformance(@Valid @RequestBody SearchPerformance searchPerformance) throws ResourceNotFoundException  {
+        return service.findExamPerformance(searchPerformance);
     }
 
 //    @PutMapping("/users/{id}")

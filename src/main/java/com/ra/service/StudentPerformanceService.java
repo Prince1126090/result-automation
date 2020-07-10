@@ -1,5 +1,6 @@
 package com.ra.service;
 
+import com.ra.dto.SearchPerformance;
 import com.ra.entity.StudentPerformance;
 import com.ra.exception.ResourceNotFoundException;
 import com.ra.repository.StudentPerformanceRepository;
@@ -15,6 +16,27 @@ import java.util.List;
 public class StudentPerformanceService {
 
     private final StudentPerformanceRepository repository;
+
+
+    public List<StudentPerformance> findExamPerformance(SearchPerformance searchParams) {
+        return repository.findByYearAndStudentClassAndSectionAndExam(
+                searchParams.getYear(),
+                searchParams.getStudentClass(),
+                searchParams.getSection(),
+                searchParams.getExam()
+        );
+    }
+
+    public StudentPerformance findStudentPerformance(SearchPerformance searchParams) throws ResourceNotFoundException {
+        return repository.findByYearAndStudentClassAndSectionAndExamAndRoll(
+                searchParams.getYear(),
+                searchParams.getStudentClass(),
+                searchParams.getSection(),
+                searchParams.getExam(),
+                searchParams.getRoll()
+        ).orElseThrow(() -> new ResourceNotFoundException("User not Found"));
+    }
+
 
     public StudentPerformance create(StudentPerformance performance) {
         return repository.save(performance);
