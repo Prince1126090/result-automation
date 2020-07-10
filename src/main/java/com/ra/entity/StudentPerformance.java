@@ -1,8 +1,10 @@
 package com.ra.entity;
 
+import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import org.hibernate.annotations.Type;
+import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -16,6 +18,10 @@ import javax.validation.constraints.Pattern;
 @Data
 @Entity
 @Table(name = "student_performance")
+@TypeDef(
+        name = "jsonb",
+        typeClass = JsonBinaryType.class
+)
 public class StudentPerformance extends BaseEntity {
 
     @NotNull
