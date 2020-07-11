@@ -6,6 +6,7 @@ import com.ra.exception.ResourceNotFoundException;
 import com.ra.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.codec.digest.DigestUtils;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -22,7 +23,10 @@ public class UserService {
                 .orElseThrow(() -> new ResourceNotFoundException("User not Found"));
     }
 
-    public User create(User user) { return repository.save(user); }
+    public User create(User user) {
+        log.info("\n\n\n After Encryption password : ");
+        log.info(DigestUtils.sha256Hex(user.getPassword()));
+        return repository.save(user); }
 
 
     public User update(Long userId, User userDetails) throws ResourceNotFoundException {
