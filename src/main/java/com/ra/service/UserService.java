@@ -19,20 +19,28 @@ public class UserService {
     private final UserRepository repository;
 
     public User login(UserCredentials credentials) throws ResourceNotFoundException {
-        return repository.findOneByContactNumberAndPassword(credentials.getContactNumber(), credentials.getPassword())
+        return repository.findOneByContactNumberAndPassword(credentials.getContactNumber(),
+                encryptString(credentials.getPassword()))
                 .orElseThrow(() -> new ResourceNotFoundException("User not Found"));
     }
 
     public User create(User user) {
+        user.setPassword(encryptString(user.getPassword()));
+        return repository.save(user);
+    }
+
+
+    private String encryptString(String inputStr) {
         log.info("\n\n\n After Encryption password : ");
-        log.info(DigestUtils.sha256Hex(user.getPassword()));
-        return repository.save(user); }
+        log.info(DigestUtils.sha256Hex(inputStr));
+        return DigestUtils.sha256Hex(inputStr);
+    }
 
 
     public User update(Long userId, User userDetails) throws ResourceNotFoundException {
         User user = findById(userId);
 
-        user.setPassword(userDetails.getPassword());
+        user.setPassword(encryptString(userDetails.getPassword()));
         user.setEmail(userDetails.getEmail());
         user.setInstituteName(userDetails.getInstituteName());
         user.setDescription(userDetails.getDescription());
