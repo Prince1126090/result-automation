@@ -37,7 +37,7 @@ public class StudentPerformance extends BaseEntity {
     @NotBlank
     private String exam;
 
-    @OneToMany(mappedBy="student_performance")
+    @OneToMany(mappedBy="studentPerformance")
     private List<Mark> marks =new ArrayList<>();
 
 //    @Type(type = "jsonb")
