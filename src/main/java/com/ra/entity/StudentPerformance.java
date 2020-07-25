@@ -1,5 +1,6 @@
 package com.ra.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.vladmihalcea.hibernate.type.json.JsonBinaryType;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
@@ -34,10 +35,11 @@ public class StudentPerformance extends BaseEntity {
     @NotBlank
     private String exam;
 
-    @OneToMany(mappedBy="studentPerformance",
+    @OneToMany(mappedBy = "studentPerformance",
             cascade = CascadeType.ALL,
             orphanRemoval = true)
-    private List<Mark> marks =new ArrayList<>();
+    @JsonIgnoreProperties(value = "studentPerformance")
+    private List<Mark> marks = new ArrayList<>();
 
 //    @Type(type = "jsonb")
 //    @Column(columnDefinition = "jsonb")
