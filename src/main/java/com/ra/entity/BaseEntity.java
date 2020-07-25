@@ -19,13 +19,13 @@ public class BaseEntity {
 	@GeneratedValue
 	private Long id;
 
-	private String createdBy;
+//	private String createdBy;
 	@CreationTimestamp
 	private Date createdOn;
 
-	private String updatedBy;
+//	private String updatedBy;
 	@UpdateTimestamp
 	private Date updatedOn;
 
-	private String isDeleted;
+//	private String isDeleted;
 }

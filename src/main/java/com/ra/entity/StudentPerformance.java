@@ -41,10 +41,6 @@ public class StudentPerformance extends BaseEntity {
     @JsonIgnoreProperties(value = "studentPerformance")
     private List<Mark> marks = new ArrayList<>();
 
-//    @Type(type = "jsonb")
-//    @Column(columnDefinition = "jsonb")
-//    private Object marks;
-
     @Type(type = "jsonb")
     @Column(columnDefinition = "jsonb")
     private Object otherInfo;
