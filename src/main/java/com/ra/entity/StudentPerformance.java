@@ -8,11 +8,12 @@ import org.hibernate.annotations.TypeDef;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
-import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
-import javax.validation.constraints.Pattern;
+import java.util.ArrayList;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Data
@@ -36,9 +37,12 @@ public class StudentPerformance extends BaseEntity {
     @NotBlank
     private String exam;
 
-    @Type(type = "jsonb")
-    @Column(columnDefinition = "jsonb")
-    private Object marks;
+    @OneToMany(mappedBy="student_performance")
+    private List<Mark> marks =new ArrayList<>();
+
+//    @Type(type = "jsonb")
+//    @Column(columnDefinition = "jsonb")
+//    private Object marks;
 
     @Type(type = "jsonb")
     @Column(columnDefinition = "jsonb")
