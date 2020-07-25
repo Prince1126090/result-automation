@@ -1,6 +1,7 @@
 package com.ra.service;
 
 import com.ra.dto.SearchPerformance;
+import com.ra.entity.Mark;
 import com.ra.entity.StudentPerformance;
 import com.ra.exception.ResourceNotFoundException;
 import com.ra.repository.StudentPerformanceRepository;
@@ -8,6 +9,7 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Slf4j
@@ -38,7 +40,26 @@ public class StudentPerformanceService {
     }
 
 
-    public StudentPerformance create(StudentPerformance performance) {
+    public StudentPerformance create(StudentPerformance reqPerformance) {
+        StudentPerformance performance = new StudentPerformance();
+        performance.setYear(reqPerformance.getYear());
+        performance.setStudentClass(reqPerformance.getStudentClass());
+        performance.setSection(reqPerformance.getSection());
+        performance.setRoll(reqPerformance.getRoll());
+        performance.setExam(reqPerformance.getExam());
+        performance.setOtherInfo(reqPerformance.getOtherInfo());
+
+        List<Mark> marks = new ArrayList<>();
+        for(Mark reqMark: reqPerformance.getMarks()){
+            Mark mark = new Mark();
+            mark.setStudentPerformance(performance);
+            mark.setSubjectName(reqMark.getSubjectName());
+            mark.setTotalMark(reqMark.getTotalMark());
+            mark.setObtainedMark(reqMark.getObtainedMark());
+            marks.add(mark);
+        }
+        performance.setMarks(marks);
+
         return repository.save(performance);
     }
 
